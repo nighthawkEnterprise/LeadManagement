@@ -30,13 +30,18 @@ function SectionDark() {
         <Container>
           <Row>
             <Col className="ml-auto mr-auto text-center" md="8">
-              <h2 className="title">Completed with examples</h2>
-              <p className="description">
-                The kit comes with three pre-built pages to help you get started
-                faster. You can change the text and images and you're good to
-                go. More importantly, looking at them will give you a picture of
-                what you can built with this powerful kit.
-              </p>
+              <h2 className="title">Our Mission</h2>
+              <h4 className="description">
+              To enhance each client’s natural beauty
+              With the most advanced cosmetic and medical procedures
+              That includes all of the services of a traditional salon and a leading-edge medical spa
+              Performed by an entrusted and energetic team
+              Of highly-trained, creative technicians and fully-accredited medical professionals
+              In an upscale and inviting spa atmosphere
+              Where each client is treated as a favored client,
+              Has their service expectations surpassed,
+              And leaves grateful for their Radiance experience.
+              </h4>
             </Col>
           </Row>
         </Container>

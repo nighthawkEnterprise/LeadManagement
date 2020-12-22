@@ -30,13 +30,19 @@ function SectionNucleoIcons() {
         <Container>
           <Row>
             <Col lg="6" md="12">
-              <h2 className="title">Nucleo Icons</h2>
-              <br />
+              <h2 className="title">Diamond Membership</h2>
               <p className="description">
-                Paper Kit comes with 100 custom icons made by our friends from
-                NucleoApp. The official package contains over 2.100 thin icons
-                which are looking great in combination with Paper Kit Make sure
-                you check all of them and use those that you like the most.
+              <h5>VIP Membership
+              Membership Benefits:
+              For a Low Monthly fee of $100 month you get:
+              50% off all Services
+              20% off all Fillers
+              $9.00 Wrinkle relaxers
+              25% off products
+              1 free Facial annually
+              1 free Laser treatment of Choice Annually
+              20 Units Free of Wrinkle Relaxer  (after being member for 2mo or paid 6mo, 12mo advance)
+              </h5>
               </p>
               <br />
               <Button
@@ -45,7 +51,7 @@ function SectionNucleoIcons() {
                 href="/nucleo-icons"
                 target="_blank"
               >
-                View Demo Icons
+               Learn More
               </Button>
               <Button
                 className="btn-round ml-1"
@@ -54,7 +60,7 @@ function SectionNucleoIcons() {
                 outline
                 target="_blank"
               >
-                View All Icons
+                Join Today
               </Button>
             </Col>
             <Col lg="6" md="12">

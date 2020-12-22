@@ -86,7 +86,7 @@ function SectionLogin() {
       }).then(async dataObj => {
           const opp = await createOpp(dataObj);
       })
-      setMessage("Registered!");
+      setMessage("Message received! Thank you for signing up, we look forward to helping you with your beauty goals.");
   }
 
   async function createGuest(dataObj) {
@@ -293,7 +293,7 @@ function SectionLogin() {
                     type="button"
                     onClick={() => registerButton()}
                   >
-                    Register
+                    Sign Up
                   </Button>
                   <div className="forgot">
                     <Button

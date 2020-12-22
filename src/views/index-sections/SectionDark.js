@@ -33,14 +33,14 @@ function SectionDark() {
               <h2 className="title">Our Mission</h2>
               <h4 className="description">
               To enhance each client’s natural beauty
-              With the most advanced cosmetic and medical procedures
-              That includes all of the services of a traditional salon and a leading-edge medical spa
-              Performed by an entrusted and energetic team
-              Of highly-trained, creative technicians and fully-accredited medical professionals
-              In an upscale and inviting spa atmosphere
-              Where each client is treated as a favored client,
-              Has their service expectations surpassed,
-              And leaves grateful for their Radiance experience.
+              with the most advanced cosmetic and medical procedures
+              that includes all of the services of a traditional salon and a leading-edge medical spa
+              performed by an entrusted and energetic team
+              of highly-trained, creative technicians and fully-accredited medical professionals
+              in an upscale and inviting spa atmosphere
+              where each client is treated as a favored client,
+              has their service expectations surpassed,
+              and leaves grateful for their Radiance experience.
               </h4>
             </Col>
           </Row>

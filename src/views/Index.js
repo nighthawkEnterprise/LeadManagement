@@ -34,11 +34,14 @@ import SectionNotifications from "views/index-sections/SectionNotifications.js";
 import SectionTypography from "views/index-sections/SectionTypography.js";
 import SectionJavaScript from "views/index-sections/SectionJavaScript.js";
 import SectionCarousel from "views/index-sections/SectionCarousel.js";
-import SectionNucleoIcons from "views/index-sections/SectionNucleoIcons.js";
-import SectionDark from "views/index-sections/SectionDark.js";
-import SectionLogin from "views/index-sections/SectionLogin.js";
-import SectionExamples from "views/index-sections/SectionExamples.js";
 import SectionDownload from "views/index-sections/SectionDownload.js";
+
+// Used in Project
+import SectionDark from "views/index-sections/SectionDark.js";
+import SectionNucleoIcons from "views/index-sections/SectionNucleoIcons.js";
+import SectionExamples from "views/index-sections/SectionExamples.js";
+import SectionLogin from "views/index-sections/SectionLogin.js";
+
 
 function Index() {
   document.documentElement.classList.remove("nav-open");

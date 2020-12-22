@@ -48,17 +48,13 @@ function SectionNucleoIcons() {
               <Button
                 className="btn-round"
                 color="danger"
-                href="/nucleo-icons"
-                target="_blank"
               >
                Learn More
               </Button>
               <Button
                 className="btn-round ml-1"
                 color="danger"
-                href="https://nucleoapp.com/?ref=1712"
                 outline
-                target="_blank"
               >
                 Join Today
               </Button>

@@ -295,16 +295,6 @@ function SectionLogin() {
                   >
                     Sign Up
                   </Button>
-                  <div className="forgot">
-                    <Button
-                      className="btn-link"
-                      color="danger"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      Forgot password?
-                    </Button>
-                  </div>
                 </Form>
                 </div>
               ) : <div> </div> }

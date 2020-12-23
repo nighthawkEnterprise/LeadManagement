@@ -261,7 +261,7 @@ function SectionLogin() {
                     <textarea style={{width: 400, height: 300}} placeholder="What are you interested in? " type="Text" value={body} onChange={e => setBody(e.target.value)}/>
                   </InputGroup>
                   <Button
-                    block
+                      block
                     className="btn-round"
                     color="danger"
                     type="button"
@@ -271,7 +271,7 @@ function SectionLogin() {
                   </Button>
                 </Form>
                 </div>
-              ) : <div> </div> }
+              ) : <div style={{textAlign: 'center'}}> <Button onClick={() => setMessage('')}> Send Another Message </Button></div> }
 
               </Card>
             </Col>

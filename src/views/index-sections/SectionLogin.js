@@ -23,20 +23,31 @@ function SectionLogin() {
   const [firstName, setFirst] = useState('');
   const [lastName, setLast] = useState('');
   const [body, setBody] = useState('');
-
-  function registerButton() {
-    console.log("HELLO", email, phoneNumber, firstName, lastName, body);
+  const [phoneError, setError] = useState('');
+  function registerButton(e) {
+    let pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+    let emailCheck = pattern.test(email);
+    let phoneCheck = phoneNumber.length == 10;
+    if(!phoneCheck) {
+      e.preventDefault();
+      setError("Phone number has to be 10 digits long");
+    } else {
+      setError('');
+    }
+    if(emailCheck && phoneCheck && firstName != '' && lastName != '' && body != '') {
+      e.preventDefault();
     const data =
     "username=zdemo&password=Zenoti@2010&grant_type=password&clientid=zdemo";
-    const dataObj = {};
-    const config = {
-      headers: {
-        "Content-Type": "text/plain",
-      },
-      responseType: "text",
-    };
-    console.log('data: ', data);
-    console.log('config: ', config);
+      const dataObj = {};
+      const config = {
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        responseType: "text",
+      };
+      console.log('data: ', data);
+      console.log('config: ', config);
+
     axios
       .post(`https://api.zenoti.com/Token`, data, config)
       .then((response) => {
@@ -64,8 +75,9 @@ function SectionLogin() {
           return dataObj;
       }).then(async dataObj => {
           const opp = await createOpp(dataObj);
+          if(opp.success)  setMessage("Message received! Thank you for signing up, we look forward to helping you with your beauty goals.");
       })
-      setMessage("Message received! Thank you for signing up, we look forward to helping you with your beauty goals.");
+    }
   }
 
   async function createGuest(dataObj) {
@@ -171,6 +183,7 @@ function SectionLogin() {
     return await axios.post(`https://api.zenoti.com/v1/opportunities`, data, config1)
       .then(res => {
         console.log("RES.DATA: ", res.data);
+        return res.data;
       })
 
   }
@@ -227,7 +240,7 @@ function SectionLogin() {
                         <i className="nc-icon nc-badge" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="First Name" type="text" value={firstName} onChange={e => setFirst(e.target.value)}/>
+                    <Input placeholder="First Name" type="text" value={firstName} required="true" onChange={e => setFirst(e.target.value)}/>
                   </InputGroup>
                   <label>Last Name</label>
                   <InputGroup className="form-group-no-border">
@@ -236,7 +249,7 @@ function SectionLogin() {
                         <i className="nc-icon nc-badge" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Last Name" type="text" value={lastName} onChange={e => setLast(e.target.value)} />
+                    <Input placeholder="Last Name" type="text" value={lastName} required="true" onChange={e => setLast(e.target.value)} />
                   </InputGroup>
                   <label>Email</label>
                   <InputGroup className="form-group-no-border">
@@ -245,7 +258,7 @@ function SectionLogin() {
                         <i className="nc-icon nc-email-85" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="text" value={email} onChange={e => setEmail(e.target.value)}/>
+                    <Input placeholder="Email" type="email" value={email} required="true" onChange={e => setEmail(e.target.value)}/>
                   </InputGroup>
                   <label>Phone Number</label>
                   <InputGroup className="form-group-no-border">
@@ -254,18 +267,19 @@ function SectionLogin() {
                         <i className="nc-icon nc-email-85" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Phone Number" type="number" value={phoneNumber} onChange={e => setPhone(e.target.value)}/>
+                    <Input placeholder="Phone Number" type="number" value={phoneNumber} required="true" onChange={e => setPhone(e.target.value)}/>
                   </InputGroup>
+                    <h6 style={{color: 'red'}}> {phoneError} </h6>
                   <label>Tell us about you!</label>
                   <InputGroup className="form-group-no-border">
-                    <textarea style={{width: 400, height: 300}} placeholder="What are you interested in? " type="Text" value={body} onChange={e => setBody(e.target.value)}/>
+                    <textarea required="true" style={{width: 400, height: 300}} placeholder="What are you interested in? " type="Text" value={body} onChange={e => setBody(e.target.value)}/>
                   </InputGroup>
                   <Button
                       block
                     className="btn-round"
                     color="danger"
-                    type="button"
-                    onClick={() => registerButton()}
+                    type="submit"
+                    onClick={registerButton}
                   >
                     Sign Up
                   </Button>

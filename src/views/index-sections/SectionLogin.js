@@ -1,21 +1,3 @@
-/*!
-
-=========================================================
-* Paper Kit React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-kit-react
-
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/paper-kit-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React, { useState } from "react";
 
 // reactstrap components
@@ -104,24 +86,19 @@ function SectionLogin() {
               "email" : `${email}`,
               "gender" : 'male',
               "mobile_phone": {
-              "country_code": "95",
+              "country_code": "1",
               "number": `${phoneNumber}`,
             },
             "general": 1,
         }
       }
-      console.log("CONFIG1: ", config1);
-      console.log("DATAAAA: ", data);
-      console.log('PROMISE:::: ',axios.post(`https://api.zenoti.com/v1/guests`, data, config1));
-    return await axios.post(`https://api.zenoti.com/v1/guests`, data, config1)
+      return await axios.post(`https://api.zenoti.com/v1/guests`, data, config1)
       .then(res => {
-        console.log("RES.DATA: ", res.data);
         return res.data;
       }).catch(err => console.log(err));
 
   }
   async function getSources(dataObj) {
-    console.log("dataOBJ : ", dataObj);
     const config1 = {
       headers: {
         'application_name' : "zdemo",
@@ -145,7 +122,6 @@ function SectionLogin() {
     }
     return await axios.get(`https://api.zenoti.com/v1/centers`, config1)
       .then(res => {
-        // console.log("res.data:" , res.data);
         return res.data.centers
       })
     }
@@ -159,7 +135,6 @@ function SectionLogin() {
       }
         return await axios.get(`https://api.zenoti.com/v1/centers/${dataObj.centerId}/therapists`, config1)
         .then(res => {
-          console.log('res.data.therapists: ', res.data.therapists);
           return res.data.therapists;
         })
 

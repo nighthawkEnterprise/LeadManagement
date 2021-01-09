@@ -14,6 +14,7 @@ import {
   Col,
 } from "reactstrap";
 import axios from 'axios';
+import { createGetAccessor } from "typescript";
 // core components
 
 function SectionLogin() {
@@ -64,8 +65,15 @@ function SectionLogin() {
           dataObj.centerId = centers[1].id;
           return dataObj;
       }).then(async dataObj => {
-          const guest= await createGuest(dataObj);
-          dataObj.guest = guest;
+          const guest= await getGuestIdExists(dataObj);
+          console.log('guest: ', guest);
+          if(guest.length > 0){ 
+            dataObj.guest = guest[0];
+          } else {
+            const newGuest = await createGuest(dataObj);
+            console.log("newGuests: ", newGuest);
+            dataObj.guest = newGuest;
+          }
           dataObj.guestId = dataObj.guest.id;
           return dataObj;
       }).then(async dataObj => {
@@ -80,6 +88,40 @@ function SectionLogin() {
     }
   }
 
+  async function getGuestIdExists(dataObj) {
+    const config1 = {
+      headers: {
+        'application_name' : "zdemo",
+        'application_version' : "11.43",
+        'Authorization' : 'bearer ' + dataObj.tokenKey.access_token,
+        'Content-Type': 'application/json',
+      }
+    }
+    console.log("DATAOBJ: ", dataObj);
+    console.log("DATAOBJ.ID: ", dataObj.centerId);
+    console.log("FIRSTNAME: ", firstName);
+    console.log("LASTNAME: ", lastName);
+    console.log("EMAIL: ", email);
+    return await axios.get(`https://api.zenoti.com/v1/guests/search?first_name=${firstName}&last_name=${lastName}&center_id=${dataObj.centerId}`, config1)
+      .then(res => {
+        console.log("RESPONSE: ", res.data);
+        return res.data.guests;
+      });
+  }
+  async function getSources(dataObj) {
+    const config1 = {
+      headers: {
+        'application_name' : "zdemo",
+        'application_version' : "11.43",
+        'Authorization' : 'bearer ' + dataObj.tokenKey.access_token
+      }
+    }
+    return await axios.get(`https://api.zenoti.com/v1/opportunities/metadata/all`, config1)
+    .then(res => {
+      console.log("RESPONSE: ", res);
+      return res.data;
+    })
+  }
   async function createGuest(dataObj) {
     const config1 = {
       headers: {
@@ -89,9 +131,9 @@ function SectionLogin() {
         'Content-Type': 'application/json',
       }
     }
-    const data =
+     const data =
         {
-            "center_id": `6d7f9d8b-2ed1-4768-b5a9-8cf0b2e1b1c9`,
+            "center_id": dataObj.centerId,
             "personal_info": {
               "first_name": `${firstName}`,
               "last_name":  `${lastName}`,
@@ -108,21 +150,6 @@ function SectionLogin() {
       .then(res => {
         return res.data;
       }).catch(err => console.log(err));
-
-  }
-  async function getSources(dataObj) {
-    const config1 = {
-      headers: {
-        'application_name' : "zdemo",
-        'application_version' : "11.43",
-        'Authorization' : 'bearer ' + dataObj.tokenKey.access_token
-      }
-    }
-    return await axios.get(`https://api.zenoti.com/v1/opportunities/metadata/all`, config1)
-    .then(res => {
-      console.log("RESPONSE: ", res);
-      return res.data;
-    })
   }
   async function getCenters(dataObj) {
     const config1 = {
@@ -179,10 +206,8 @@ function SectionLogin() {
               "code": "CONSULT"
             }
         }
-    console.log("PROMISE: ", axios.post(`https://api.zenoti.com/v1/opportunities`, data, config1));
     return await axios.post(`https://api.zenoti.com/v1/opportunities`, data, config1)
       .then(res => {
-        console.log("RES.DATA: ", res.data);
         return res.data;
       })
 

@@ -46,8 +46,6 @@ function SectionLogin() {
         },
         responseType: "text",
       };
-      console.log('data: ', data);
-      console.log('config: ', config);
 
     axios
       .post(`https://api.zenoti.com/Token`, data, config)
@@ -66,12 +64,10 @@ function SectionLogin() {
           return dataObj;
       }).then(async dataObj => {
           const guest= await getGuestIdExists(dataObj);
-          console.log('guest: ', guest);
           if(guest.length > 0){ 
             dataObj.guest = guest[0];
           } else {
             const newGuest = await createGuest(dataObj);
-            console.log("newGuests: ", newGuest);
             dataObj.guest = newGuest;
           }
           dataObj.guestId = dataObj.guest.id;
@@ -97,11 +93,6 @@ function SectionLogin() {
         'Content-Type': 'application/json',
       }
     }
-    console.log("DATAOBJ: ", dataObj);
-    console.log("DATAOBJ.ID: ", dataObj.centerId);
-    console.log("FIRSTNAME: ", firstName);
-    console.log("LASTNAME: ", lastName);
-    console.log("EMAIL: ", email);
     return await axios.get(`https://api.zenoti.com/v1/guests/search?first_name=${firstName}&last_name=${lastName}&center_id=${dataObj.centerId}`, config1)
       .then(res => {
         console.log("RESPONSE: ", res.data);
@@ -183,7 +174,6 @@ function SectionLogin() {
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1);
     let date = tomorrow.getFullYear() + '-' + (tomorrow.getMonth()+1) + '-' + tomorrow.getDate();
-    console.log('date: ', date);
     const config1 = {
       headers: {
         'application_name' : "zdemo",
